@@ -1,0 +1,20 @@
+{
+  "id": "Leg_Extension",
+  "name": "Leg Extension",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Leg Extension with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Leg_Extension/0.jpg",
+    "Leg_Extension/1.jpg"
+  ]
+}

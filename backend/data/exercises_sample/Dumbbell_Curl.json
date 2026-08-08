@@ -1,0 +1,20 @@
+{
+  "id": "Dumbbell_Curl",
+  "name": "Dumbbell Curl",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "biceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Dumbbell Curl with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Dumbbell_Curl/0.jpg",
+    "Dumbbell_Curl/1.jpg"
+  ]
+}

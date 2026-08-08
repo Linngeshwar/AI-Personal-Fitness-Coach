@@ -1,0 +1,23 @@
+{
+  "id": "Good_Morning",
+  "name": "Good Morning",
+  "force": "pull",
+  "level": "expert",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "hamstrings"
+  ],
+  "secondaryMuscles": [
+    "lower back",
+    "glutes"
+  ],
+  "instructions": [
+    "Perform Good Morning with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Good_Morning/0.jpg",
+    "Good_Morning/1.jpg"
+  ]
+}

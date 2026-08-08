@@ -1,0 +1,22 @@
+{
+  "id": "Standing_Overhead_Press",
+  "name": "Standing Overhead Press",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "shoulders"
+  ],
+  "secondaryMuscles": [
+    "triceps"
+  ],
+  "instructions": [
+    "Perform Standing Overhead Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Standing_Overhead_Press/0.jpg",
+    "Standing_Overhead_Press/1.jpg"
+  ]
+}

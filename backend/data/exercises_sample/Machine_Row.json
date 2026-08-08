@@ -1,0 +1,23 @@
+{
+  "id": "Machine_Row",
+  "name": "Machine Row",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "middle back"
+  ],
+  "secondaryMuscles": [
+    "lats",
+    "biceps"
+  ],
+  "instructions": [
+    "Perform Machine Row with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Machine_Row/0.jpg",
+    "Machine_Row/1.jpg"
+  ]
+}

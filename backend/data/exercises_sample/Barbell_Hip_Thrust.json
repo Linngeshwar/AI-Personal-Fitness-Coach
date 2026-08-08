@@ -1,0 +1,22 @@
+{
+  "id": "Barbell_Hip_Thrust",
+  "name": "Barbell Hip Thrust",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "glutes"
+  ],
+  "secondaryMuscles": [
+    "hamstrings"
+  ],
+  "instructions": [
+    "Perform Barbell Hip Thrust with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Barbell_Hip_Thrust/0.jpg",
+    "Barbell_Hip_Thrust/1.jpg"
+  ]
+}

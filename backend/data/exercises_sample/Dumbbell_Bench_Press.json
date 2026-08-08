@@ -1,0 +1,23 @@
+{
+  "id": "Dumbbell_Bench_Press",
+  "name": "Dumbbell Bench Press",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "chest"
+  ],
+  "secondaryMuscles": [
+    "triceps",
+    "shoulders"
+  ],
+  "instructions": [
+    "Perform Dumbbell Bench Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Dumbbell_Bench_Press/0.jpg",
+    "Dumbbell_Bench_Press/1.jpg"
+  ]
+}

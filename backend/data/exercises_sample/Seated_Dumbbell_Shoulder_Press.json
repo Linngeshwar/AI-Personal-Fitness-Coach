@@ -1,0 +1,22 @@
+{
+  "id": "Seated_Dumbbell_Shoulder_Press",
+  "name": "Seated Dumbbell Shoulder Press",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "shoulders"
+  ],
+  "secondaryMuscles": [
+    "triceps"
+  ],
+  "instructions": [
+    "Perform Seated Dumbbell Shoulder Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Seated_Dumbbell_Shoulder_Press/0.jpg",
+    "Seated_Dumbbell_Shoulder_Press/1.jpg"
+  ]
+}

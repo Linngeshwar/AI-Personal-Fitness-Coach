@@ -1,0 +1,20 @@
+{
+  "id": "Cable_Chest_Fly",
+  "name": "Cable Chest Fly",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "chest"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Cable Chest Fly with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Cable_Chest_Fly/0.jpg",
+    "Cable_Chest_Fly/1.jpg"
+  ]
+}

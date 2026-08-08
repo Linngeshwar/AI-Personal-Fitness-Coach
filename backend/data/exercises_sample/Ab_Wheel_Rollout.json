@@ -1,0 +1,22 @@
+{
+  "id": "Ab_Wheel_Rollout",
+  "name": "Ab Wheel Rollout",
+  "force": "pull",
+  "level": "expert",
+  "mechanic": "isolation",
+  "equipment": "other",
+  "primaryMuscles": [
+    "abdominals"
+  ],
+  "secondaryMuscles": [
+    "shoulders"
+  ],
+  "instructions": [
+    "Perform Ab Wheel Rollout with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Ab_Wheel_Rollout/0.jpg",
+    "Ab_Wheel_Rollout/1.jpg"
+  ]
+}

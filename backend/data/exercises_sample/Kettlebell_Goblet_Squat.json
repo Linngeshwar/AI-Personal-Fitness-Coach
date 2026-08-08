@@ -1,0 +1,22 @@
+{
+  "id": "Kettlebell_Goblet_Squat",
+  "name": "Kettlebell Goblet Squat",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "kettlebells",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [
+    "glutes"
+  ],
+  "instructions": [
+    "Perform Kettlebell Goblet Squat with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Kettlebell_Goblet_Squat/0.jpg",
+    "Kettlebell_Goblet_Squat/1.jpg"
+  ]
+}

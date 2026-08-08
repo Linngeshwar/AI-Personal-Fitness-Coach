@@ -1,0 +1,20 @@
+{
+  "id": "Bicycle_Crunch",
+  "name": "Bicycle Crunch",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "abdominals"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Bicycle Crunch with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Bicycle_Crunch/0.jpg",
+    "Bicycle_Crunch/1.jpg"
+  ]
+}

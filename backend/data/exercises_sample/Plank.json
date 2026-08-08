@@ -1,0 +1,20 @@
+{
+  "id": "Plank",
+  "name": "Plank",
+  "force": "static",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "abdominals"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Plank with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Plank/0.jpg",
+    "Plank/1.jpg"
+  ]
+}

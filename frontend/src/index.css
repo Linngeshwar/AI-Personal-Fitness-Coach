@@ -1,111 +1,145 @@
+/*
+  Direction: "Iron Ledger" -- a physical training log, not a SaaS dashboard.
+  Warm stone paper + cast-iron ink + an oxidized rust/ochre accent (never
+  the cream-paper/terracotta or near-black/neon combos every AI-generated
+  page defaults to). No webfont import, on purpose: this app's whole pitch
+  is that it survives a dead connection, so the type system shouldn't
+  depend on one either -- personality comes from weight/scale/tracking on
+  robust system stacks instead. A monospace face carries every number
+  (sets, reps, rest, RIR) like a stopwatch or scoreboard readout.
+*/
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --canvas: #e7e0cc;
+  --panel: #dcd3b8;
+  --panel-raised: #efe9d7;
+  --ink: #211b14;
+  --ink-soft: #5b5442;
+  --line: #b7ad8e;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --amber: #b9691e;
+  --amber-soft: rgba(185, 105, 30, 0.14);
+  --moss: #47623f;
+  --moss-soft: rgba(71, 98, 63, 0.14);
+  --flag: #a23f2a;
+  --flag-soft: rgba(162, 63, 42, 0.14);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  --shadow: rgba(33, 27, 20, 0.16) 0 6px 20px -8px;
+
+  --display: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --sans: -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+
+  font: 17px/1.5 var(--sans);
   color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  color: var(--ink);
+  background: var(--canvas);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 640px) {
     font-size: 16px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+  :root:not([data-theme="light"]) {
+    --canvas: #18140d;
+    --panel: #221c13;
+    --panel-raised: #2a2318;
+    --ink: #efe7d2;
+    --ink-soft: #b3a78c;
+    --line: #443b29;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    --amber: #e0902f;
+    --amber-soft: rgba(224, 144, 47, 0.18);
+    --moss: #7ba06d;
+    --moss-soft: rgba(123, 160, 109, 0.18);
+    --flag: #d4694f;
+    --flag-soft: rgba(212, 105, 79, 0.18);
+
+    --shadow: rgba(0, 0, 0, 0.4) 0 6px 20px -8px;
   }
+}
+
+:root[data-theme="dark"] {
+  --canvas: #18140d;
+  --panel: #221c13;
+  --panel-raised: #2a2318;
+  --ink: #efe7d2;
+  --ink-soft: #b3a78c;
+  --line: #443b29;
+
+  --amber: #e0902f;
+  --amber-soft: rgba(224, 144, 47, 0.18);
+  --moss: #7ba06d;
+  --moss-soft: rgba(123, 160, 109, 0.18);
+  --flag: #d4694f;
+  --flag-soft: rgba(212, 105, 79, 0.18);
+
+  --shadow: rgba(0, 0, 0, 0.4) 0 6px 20px -8px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
 }
 
 #root {
-  width: 1126px;
   max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+h1, h2, h3 {
+  font-family: var(--display);
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
 }
+
 p {
   margin: 0;
 }
 
-code,
-.counter {
+code {
   font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--amber-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

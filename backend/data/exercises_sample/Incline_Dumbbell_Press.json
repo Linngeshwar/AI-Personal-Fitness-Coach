@@ -1,0 +1,23 @@
+{
+  "id": "Incline_Dumbbell_Press",
+  "name": "Incline Dumbbell Press",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "chest"
+  ],
+  "secondaryMuscles": [
+    "shoulders",
+    "triceps"
+  ],
+  "instructions": [
+    "Perform Incline Dumbbell Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Incline_Dumbbell_Press/0.jpg",
+    "Incline_Dumbbell_Press/1.jpg"
+  ]
+}

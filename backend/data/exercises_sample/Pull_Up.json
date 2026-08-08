@@ -1,0 +1,23 @@
+{
+  "id": "Pull_Up",
+  "name": "Pull-Up",
+  "force": "pull",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "biceps",
+    "middle back"
+  ],
+  "instructions": [
+    "Perform Pull-Up with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Pull_Up/0.jpg",
+    "Pull_Up/1.jpg"
+  ]
+}

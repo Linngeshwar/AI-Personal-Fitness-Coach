@@ -1,0 +1,20 @@
+{
+  "id": "Concentration_Curl",
+  "name": "Concentration Curl",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "biceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Concentration Curl with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Concentration_Curl/0.jpg",
+    "Concentration_Curl/1.jpg"
+  ]
+}

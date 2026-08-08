@@ -1,0 +1,20 @@
+{
+  "id": "Superman_Hold",
+  "name": "Superman Hold",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "middle back"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Superman Hold with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Superman_Hold/0.jpg",
+    "Superman_Hold/1.jpg"
+  ]
+}

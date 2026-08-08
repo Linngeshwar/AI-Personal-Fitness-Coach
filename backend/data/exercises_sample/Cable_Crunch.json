@@ -1,0 +1,20 @@
+{
+  "id": "Cable_Crunch",
+  "name": "Cable Crunch",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "abdominals"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Cable Crunch with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Cable_Crunch/0.jpg",
+    "Cable_Crunch/1.jpg"
+  ]
+}

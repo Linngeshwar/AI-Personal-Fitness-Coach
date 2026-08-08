@@ -1,0 +1,23 @@
+{
+  "id": "Barbell_Bench_Press",
+  "name": "Barbell Bench Press",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "chest"
+  ],
+  "secondaryMuscles": [
+    "triceps",
+    "shoulders"
+  ],
+  "instructions": [
+    "Perform Barbell Bench Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Barbell_Bench_Press/0.jpg",
+    "Barbell_Bench_Press/1.jpg"
+  ]
+}

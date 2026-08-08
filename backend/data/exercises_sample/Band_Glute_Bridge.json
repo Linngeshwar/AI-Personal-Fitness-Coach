@@ -1,0 +1,20 @@
+{
+  "id": "Band_Glute_Bridge",
+  "name": "Band Glute Bridge",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "bands",
+  "primaryMuscles": [
+    "glutes"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Band Glute Bridge with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Band_Glute_Bridge/0.jpg",
+    "Band_Glute_Bridge/1.jpg"
+  ]
+}

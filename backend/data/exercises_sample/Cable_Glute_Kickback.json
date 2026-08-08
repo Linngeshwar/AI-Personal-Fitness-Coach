@@ -1,0 +1,20 @@
+{
+  "id": "Cable_Glute_Kickback",
+  "name": "Cable Glute Kickback",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "glutes"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Cable Glute Kickback with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Cable_Glute_Kickback/0.jpg",
+    "Cable_Glute_Kickback/1.jpg"
+  ]
+}

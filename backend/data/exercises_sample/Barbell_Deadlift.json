@@ -1,0 +1,23 @@
+{
+  "id": "Barbell_Deadlift",
+  "name": "Barbell Deadlift",
+  "force": "pull",
+  "level": "expert",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "hamstrings"
+  ],
+  "secondaryMuscles": [
+    "lower back",
+    "glutes"
+  ],
+  "instructions": [
+    "Perform Barbell Deadlift with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Barbell_Deadlift/0.jpg",
+    "Barbell_Deadlift/1.jpg"
+  ]
+}

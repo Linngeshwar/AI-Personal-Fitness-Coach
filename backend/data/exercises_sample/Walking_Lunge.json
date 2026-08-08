@@ -1,0 +1,23 @@
+{
+  "id": "Walking_Lunge",
+  "name": "Walking Lunge",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [
+    "glutes",
+    "hamstrings"
+  ],
+  "instructions": [
+    "Perform Walking Lunge with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Walking_Lunge/0.jpg",
+    "Walking_Lunge/1.jpg"
+  ]
+}

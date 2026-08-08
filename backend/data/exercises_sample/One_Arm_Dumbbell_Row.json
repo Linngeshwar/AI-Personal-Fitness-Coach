@@ -1,0 +1,23 @@
+{
+  "id": "One_Arm_Dumbbell_Row",
+  "name": "One-Arm Dumbbell Row",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "middle back",
+    "biceps"
+  ],
+  "instructions": [
+    "Perform One-Arm Dumbbell Row with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "One_Arm_Dumbbell_Row/0.jpg",
+    "One_Arm_Dumbbell_Row/1.jpg"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "Kettlebell_Swing",
+  "name": "Kettlebell Swing",
+  "force": "pull",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "kettlebells",
+  "primaryMuscles": [
+    "hamstrings"
+  ],
+  "secondaryMuscles": [
+    "glutes"
+  ],
+  "instructions": [
+    "Perform Kettlebell Swing with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Kettlebell_Swing/0.jpg",
+    "Kettlebell_Swing/1.jpg"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Dumbbell_Overhead_Triceps_Extension",
+  "name": "Dumbbell Overhead Triceps Extension",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "isolation",
+  "equipment": "dumbbell",
+  "primaryMuscles": [
+    "triceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Dumbbell Overhead Triceps Extension with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Dumbbell_Overhead_Triceps_Extension/0.jpg",
+    "Dumbbell_Overhead_Triceps_Extension/1.jpg"
+  ]
+}

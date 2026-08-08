@@ -1,0 +1,22 @@
+{
+  "id": "Lat_Pulldown",
+  "name": "Lat Pulldown",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "biceps"
+  ],
+  "instructions": [
+    "Perform Lat Pulldown with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Lat_Pulldown/0.jpg",
+    "Lat_Pulldown/1.jpg"
+  ]
+}

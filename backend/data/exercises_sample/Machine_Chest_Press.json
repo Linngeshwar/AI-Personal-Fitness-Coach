@@ -1,0 +1,22 @@
+{
+  "id": "Machine_Chest_Press",
+  "name": "Machine Chest Press",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "chest"
+  ],
+  "secondaryMuscles": [
+    "triceps"
+  ],
+  "instructions": [
+    "Perform Machine Chest Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Machine_Chest_Press/0.jpg",
+    "Machine_Chest_Press/1.jpg"
+  ]
+}

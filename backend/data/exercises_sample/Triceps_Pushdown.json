@@ -1,0 +1,20 @@
+{
+  "id": "Triceps_Pushdown",
+  "name": "Triceps Pushdown",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "triceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Triceps Pushdown with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Triceps_Pushdown/0.jpg",
+    "Triceps_Pushdown/1.jpg"
+  ]
+}

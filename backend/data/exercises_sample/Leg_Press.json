@@ -1,0 +1,23 @@
+{
+  "id": "Leg_Press",
+  "name": "Leg Press",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [
+    "glutes",
+    "hamstrings"
+  ],
+  "instructions": [
+    "Perform Leg Press with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Leg_Press/0.jpg",
+    "Leg_Press/1.jpg"
+  ]
+}

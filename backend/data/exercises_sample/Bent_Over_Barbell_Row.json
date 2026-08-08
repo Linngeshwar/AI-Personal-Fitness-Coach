@@ -1,0 +1,23 @@
+{
+  "id": "Bent_Over_Barbell_Row",
+  "name": "Bent-Over Barbell Row",
+  "force": "pull",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "middle back",
+    "biceps"
+  ],
+  "instructions": [
+    "Perform Bent-Over Barbell Row with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Bent_Over_Barbell_Row/0.jpg",
+    "Bent_Over_Barbell_Row/1.jpg"
+  ]
+}

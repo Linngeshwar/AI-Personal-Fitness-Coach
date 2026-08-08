@@ -1,0 +1,20 @@
+{
+  "id": "Bodyweight_Glute_Bridge",
+  "name": "Bodyweight Glute Bridge",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "glutes"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Bodyweight Glute Bridge with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Bodyweight_Glute_Bridge/0.jpg",
+    "Bodyweight_Glute_Bridge/1.jpg"
+  ]
+}

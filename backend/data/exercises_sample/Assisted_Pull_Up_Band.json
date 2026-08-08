@@ -1,0 +1,22 @@
+{
+  "id": "Assisted_Pull_Up_Band",
+  "name": "Assisted Pull-Up (Band)",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "bands",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "biceps"
+  ],
+  "instructions": [
+    "Perform Assisted Pull-Up (Band) with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Assisted_Pull_Up_Band/0.jpg",
+    "Assisted_Pull_Up_Band/1.jpg"
+  ]
+}

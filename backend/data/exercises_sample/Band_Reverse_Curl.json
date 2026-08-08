@@ -1,0 +1,20 @@
+{
+  "id": "Band_Reverse_Curl",
+  "name": "Band Reverse Curl",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "bands",
+  "primaryMuscles": [
+    "biceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Band Reverse Curl with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Band_Reverse_Curl/0.jpg",
+    "Band_Reverse_Curl/1.jpg"
+  ]
+}

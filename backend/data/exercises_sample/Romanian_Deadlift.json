@@ -1,0 +1,23 @@
+{
+  "id": "Romanian_Deadlift",
+  "name": "Romanian Deadlift",
+  "force": "pull",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "hamstrings"
+  ],
+  "secondaryMuscles": [
+    "glutes",
+    "lower back"
+  ],
+  "instructions": [
+    "Perform Romanian Deadlift with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Romanian_Deadlift/0.jpg",
+    "Romanian_Deadlift/1.jpg"
+  ]
+}

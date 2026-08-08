@@ -1,0 +1,20 @@
+{
+  "id": "Overhead_Triceps_Stretch",
+  "name": "Overhead Triceps Stretch",
+  "force": "static",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "triceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Overhead Triceps Stretch with controlled form for the prescribed reps."
+  ],
+  "category": "stretching",
+  "images": [
+    "Overhead_Triceps_Stretch/0.jpg",
+    "Overhead_Triceps_Stretch/1.jpg"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Lying_Leg_Curl",
+  "name": "Lying Leg Curl",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "hamstrings"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Lying Leg Curl with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Lying_Leg_Curl/0.jpg",
+    "Lying_Leg_Curl/1.jpg"
+  ]
+}

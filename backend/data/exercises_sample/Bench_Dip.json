@@ -1,0 +1,23 @@
+{
+  "id": "Bench_Dip",
+  "name": "Bench Dip",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "triceps"
+  ],
+  "secondaryMuscles": [
+    "chest",
+    "shoulders"
+  ],
+  "instructions": [
+    "Perform Bench Dip with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Bench_Dip/0.jpg",
+    "Bench_Dip/1.jpg"
+  ]
+}

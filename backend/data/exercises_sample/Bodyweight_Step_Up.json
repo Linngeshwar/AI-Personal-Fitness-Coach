@@ -1,0 +1,22 @@
+{
+  "id": "Bodyweight_Step_Up",
+  "name": "Bodyweight Step-Up",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "body only",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [
+    "glutes"
+  ],
+  "instructions": [
+    "Perform Bodyweight Step-Up with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Bodyweight_Step_Up/0.jpg",
+    "Bodyweight_Step_Up/1.jpg"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Standing_Calf_Raise",
+  "name": "Standing Calf Raise",
+  "force": "push",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "machine",
+  "primaryMuscles": [
+    "calves"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Standing Calf Raise with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Standing_Calf_Raise/0.jpg",
+    "Standing_Calf_Raise/1.jpg"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "Face_Pull",
+  "name": "Face Pull",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "middle back"
+  ],
+  "secondaryMuscles": [
+    "shoulders"
+  ],
+  "instructions": [
+    "Perform Face Pull with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Face_Pull/0.jpg",
+    "Face_Pull/1.jpg"
+  ]
+}

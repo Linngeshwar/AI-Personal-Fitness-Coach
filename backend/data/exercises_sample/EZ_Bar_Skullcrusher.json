@@ -1,0 +1,20 @@
+{
+  "id": "EZ_Bar_Skullcrusher",
+  "name": "EZ-Bar Skullcrusher",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "isolation",
+  "equipment": "e-z curl bar",
+  "primaryMuscles": [
+    "triceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform EZ-Bar Skullcrusher with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "EZ_Bar_Skullcrusher/0.jpg",
+    "EZ_Bar_Skullcrusher/1.jpg"
+  ]
+}

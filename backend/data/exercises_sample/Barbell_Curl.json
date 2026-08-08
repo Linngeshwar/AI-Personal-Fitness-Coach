@@ -1,0 +1,20 @@
+{
+  "id": "Barbell_Curl",
+  "name": "Barbell Curl",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "isolation",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "biceps"
+  ],
+  "secondaryMuscles": [],
+  "instructions": [
+    "Perform Barbell Curl with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Barbell_Curl/0.jpg",
+    "Barbell_Curl/1.jpg"
+  ]
+}

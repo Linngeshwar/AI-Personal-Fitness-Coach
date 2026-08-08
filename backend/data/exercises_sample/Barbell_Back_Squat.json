@@ -1,0 +1,23 @@
+{
+  "id": "Barbell_Back_Squat",
+  "name": "Barbell Back Squat",
+  "force": "push",
+  "level": "intermediate",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": [
+    "quadriceps"
+  ],
+  "secondaryMuscles": [
+    "glutes",
+    "hamstrings"
+  ],
+  "instructions": [
+    "Perform Barbell Back Squat with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Barbell_Back_Squat/0.jpg",
+    "Barbell_Back_Squat/1.jpg"
+  ]
+}

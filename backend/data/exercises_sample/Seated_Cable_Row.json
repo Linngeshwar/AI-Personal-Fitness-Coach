@@ -1,0 +1,23 @@
+{
+  "id": "Seated_Cable_Row",
+  "name": "Seated Cable Row",
+  "force": "pull",
+  "level": "beginner",
+  "mechanic": "compound",
+  "equipment": "cable",
+  "primaryMuscles": [
+    "lats"
+  ],
+  "secondaryMuscles": [
+    "middle back",
+    "biceps"
+  ],
+  "instructions": [
+    "Perform Seated Cable Row with controlled form for the prescribed reps."
+  ],
+  "category": "strength",
+  "images": [
+    "Seated_Cable_Row/0.jpg",
+    "Seated_Cable_Row/1.jpg"
+  ]
+}
