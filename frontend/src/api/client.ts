@@ -58,6 +58,15 @@ export interface PlanDay {
   blocks: PlanBlock[];
 }
 
+export interface BmiSummary {
+  weight_kg: number;
+  height_cm: number;
+  bmi: number;
+  category: "underweight" | "normal" | "overweight" | "obese";
+  target_weight_kg: number;
+  target_note: string;
+}
+
 export interface Plan {
   plan_id: string;
   user_id: string;
@@ -65,6 +74,19 @@ export interface Plan {
   generated_by: "deterministic" | "gemini_refined";
   volume_multiplier: number;
   days: PlanDay[];
+}
+
+export interface Violation {
+  rule: string;
+  severity: "hard" | "soft";
+  detail: string;
+}
+
+export interface RejectedPlan {
+  id: string;
+  user_id: string;
+  violations: Violation[];
+  created_at: string;
 }
 
 const BASE = "/api";
@@ -99,12 +121,20 @@ export function fetchCurrentPlan(): Promise<Plan> {
   return request<Plan>("/plan/current");
 }
 
+export function fetchBmiSummary(): Promise<BmiSummary> {
+  return request<BmiSummary>("/me/bmi");
+}
+
 export function adjustPlan(text: string): Promise<Plan> {
   return request<Plan>("/plan/adjust", { method: "POST", body: JSON.stringify({ text }) });
 }
 
 export function deleteMe(): Promise<{ deleted: boolean }> {
   return request<{ deleted: boolean }>("/me", { method: "DELETE" });
+}
+
+export function fetchRejectedPlans(): Promise<RejectedPlan[]> {
+  return request<RejectedPlan[]>("/debug/validations");
 }
 
 export { ApiError };

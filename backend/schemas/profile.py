@@ -65,3 +65,12 @@ class ScreeningResult(BaseModel):
     requires_clearance: bool = False
     message: str | None = None
     volume_cap: float = 1.0
+
+
+class BmiSummary(BaseModel):
+    weight_kg: float
+    height_cm: float
+    bmi: float
+    category: Literal["underweight", "normal", "overweight", "obese"]
+    target_weight_kg: float
+    target_note: str

@@ -84,6 +84,22 @@ def _apply_delta(profile: UserProfile, delta: ConstraintDelta) -> UserProfile:
     return profile.model_copy(update=updates) if updates else profile
 
 
+def _apply_skip_intent(plan: Plan, delta: ConstraintDelta | None) -> Plan:
+    """intent == "skip" ("take today off", "rest day please") has to be
+    handled deterministically -- Call B's own system prompt forbids
+    changing the number of training days, so Gemini refuses to blank a
+    day even if asked, and the validator has no notion of "intent" to
+    enforce it either. Applied both before AND after Gemini's refine call
+    so neither it nor the repair step can quietly re-fill today."""
+    if delta is None or delta.intent != "skip":
+        return plan
+    today, *rest = plan.days
+    if today.type != "workout":
+        return plan
+    today = today.model_copy(update={"type": "rest", "focus": None, "est_minutes": 0, "blocks": []})
+    return plan.model_copy(update={"days": [today, *rest]})
+
+
 @router.post("/plan/adjust")
 async def adjust(payload: AdjustIn, user_id: str = Depends(current_user)) -> Plan:
     # text -> Call A -> Layer 2 -> Call B -> Layer 4 -> Plan
@@ -105,6 +121,7 @@ async def adjust(payload: AdjustIn, user_id: str = Depends(current_user)) -> Pla
             week_start=date.today(),
             plan_id=str(uuid.uuid4()),
         )
+        draft = _apply_skip_intent(draft, delta)
 
         # Draft's own exercises are always in-bounds for Gemini to keep;
         # fill the rest of the whitelist from the same candidate pool.
@@ -115,6 +132,7 @@ async def adjust(payload: AdjustIn, user_id: str = Depends(current_user)) -> Pla
 
         refined = await refine_plan(draft, merged_profile, allowed_ids)
         candidate = draft if refined is None else refined.model_copy(update={"generated_by": "gemini_refined"})
+        candidate = _apply_skip_intent(candidate, delta)
 
         final_plan, _violations = await validate_and_repair(conn, candidate, merged_profile, fallback=draft)
         await insert_plan(conn, final_plan)

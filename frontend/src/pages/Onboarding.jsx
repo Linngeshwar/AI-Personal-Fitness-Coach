@@ -66,6 +66,15 @@ function toggle(list, value) {
   return list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
 }
 
+// Number inputs have no native form-level validation gate here (submit is a
+// plain button click, not a <form onSubmit>), so min/max attributes alone
+// are just spinner hints -- clamp on every change to actually keep the
+// value in a sane human range.
+function clamp(value, min, max) {
+  if (Number.isNaN(value)) return min;
+  return Math.min(max, Math.max(min, value));
+}
+
 // Tally marks, grouped in fives like a hand count -- steps done/active fill
 // in, and a fifth mark strikes diagonally across its group of four.
 function TallyProgress({ step, total }) {
@@ -176,16 +185,27 @@ export default function Onboarding({ onComplete }) {
         <div className="field-stack">
           <p className="section-label">Equipment available</p>
           <div className="option-grid">
-            {EQUIPMENT.map((eq) => (
-              <button
-                key={eq.value}
-                type="button"
-                className={`option ${profile.equipment.includes(eq.value) ? "selected" : ""}`}
-                onClick={() => setProfile((p) => ({ ...p, equipment: toggle(p.equipment, eq.value) }))}
-              >
-                {eq.label}
-              </button>
-            ))}
+            {EQUIPMENT.map((eq) => {
+              // "none" is a real Equipment value, but selecting it alongside
+              // "barbell" etc. is a contradiction the backend won't catch --
+              // keep the two mutually exclusive here instead.
+              const isNone = eq.value === "none";
+              return (
+                <button
+                  key={eq.value}
+                  type="button"
+                  className={`option ${profile.equipment.includes(eq.value) ? "selected" : ""}`}
+                  onClick={() =>
+                    setProfile((p) => ({
+                      ...p,
+                      equipment: isNone ? ["none"] : toggle(p.equipment.filter((v) => v !== "none"), eq.value),
+                    }))
+                  }
+                >
+                  {eq.label}
+                </button>
+              );
+            })}
           </div>
           <p className="section-label">Any injuries to work around?</p>
           <div className="option-grid">
@@ -217,24 +237,30 @@ export default function Onboarding({ onComplete }) {
             Height (cm)
             <input
               type="number"
+              min={100}
+              max={230}
               value={profile.height_cm}
-              onChange={(e) => setProfile((p) => ({ ...p, height_cm: Number(e.target.value) }))}
+              onChange={(e) => setProfile((p) => ({ ...p, height_cm: clamp(Number(e.target.value), 100, 230) }))}
             />
           </label>
           <label>
             Weight (kg)
             <input
               type="number"
+              min={30}
+              max={250}
               value={profile.weight_kg}
-              onChange={(e) => setProfile((p) => ({ ...p, weight_kg: Number(e.target.value) }))}
+              onChange={(e) => setProfile((p) => ({ ...p, weight_kg: clamp(Number(e.target.value), 30, 250) }))}
             />
           </label>
           <label>
             Age
             <input
               type="number"
+              min={13}
+              max={90}
               value={profile.age}
-              onChange={(e) => setProfile((p) => ({ ...p, age: Number(e.target.value) }))}
+              onChange={(e) => setProfile((p) => ({ ...p, age: clamp(Number(e.target.value), 13, 90) }))}
             />
           </label>
           <label>
