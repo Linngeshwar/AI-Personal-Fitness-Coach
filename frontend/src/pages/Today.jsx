@@ -17,10 +17,12 @@ function formatDate(iso) {
   return `${DAY_NAMES[d.getDay()]} ${d.toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
 }
 
-export default function Today({ plan, onAdjust }) {
+export default function Today({ plan, onAdjust, justUpdated, onDismissUpdate }) {
   const today = plan.days[0];
   const rest = plan.days.slice(1);
   const isGemini = plan.generated_by === "gemini_refined";
+
+  const swaps = today.blocks.filter((b) => b.swap_reason);
 
   return (
     <div className="today">
@@ -32,6 +34,23 @@ export default function Today({ plan, onAdjust }) {
           {isGemini ? "Gemini-refined" : "Deterministic"}
         </span>
       </div>
+
+      {justUpdated && (
+        <div className="update-banner">
+          <div className="update-banner-text">
+            <strong>Plan updated.</strong>{" "}
+            {isGemini
+              ? swaps.length > 0
+                ? `${swaps.length} exercise${swaps.length > 1 ? "s" : ""} changed today.`
+                : "Your coach adjusted the plan."
+              : "Gemini didn't respond in time, so your last working plan carried forward instead."}
+          </div>
+          <button type="button" className="update-banner-dismiss" onClick={onDismissUpdate} aria-label="Dismiss">
+            &times;
+          </button>
+        </div>
+      )}
+
       <h1>{today.type === "rest" ? "Rest day" : today.focus ? `${humanize(today.focus)} day` : "Today"}</h1>
 
       <div className="ledger-card">
@@ -43,10 +62,14 @@ export default function Today({ plan, onAdjust }) {
             <div className="exercise-list">
               {today.blocks.map((b) => (
                 <div className="exercise-row" key={b.exercise_id}>
-                  <span className="exercise-name">{humanize(b.exercise_id)}</span>
+                  <span className="exercise-name">
+                    {humanize(b.exercise_id)}
+                    {justUpdated && b.swap_reason && <span className="swapped-tag">Swapped</span>}
+                  </span>
                   <span className="exercise-figures">
                     {b.sets}&times;{b.rep_low}-{b.rep_high} @RIR{b.rir} &middot; {b.rest_seconds}s
                   </span>
+                  {b.swap_reason && <span className="exercise-note swap">{b.swap_reason}</span>}
                   {b.note && <span className="exercise-note">{b.note}</span>}
                 </div>
               ))}

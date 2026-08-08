@@ -10,6 +10,7 @@ schema needed.
 import asyncio
 import logging
 import os
+import time
 
 from dotenv import load_dotenv
 from google import genai
@@ -20,10 +21,18 @@ load_dotenv()
 
 log = logging.getLogger("gemini")
 
-# "gemini-2.5-flash" (the spec's pinned model) has since been cut off from
-# new API keys ("no longer available to new users"). Track the alias
-# instead of a dated snapshot so this doesn't happen again mid-demo.
-MODEL = "gemini-flash-latest"
+# "gemini-flash-latest" is a moving alias -- it currently resolves to
+# gemini-3.6-flash, a reasoning model. That cost us twice: Call B measured
+# 6-19s (it spends 1-3k thinking tokens before emitting the plan, and
+# thinking_budget=0 is rejected with a 400 on that model), and its free tier
+# is 20 requests/day, so the coach 429s after ~10 adjusts.
+#
+# flash-lite doesn't think by default: same prompts, same Plan schema,
+# measured 3.6-4.6s on Call B with valid output every time, on a much
+# larger free-tier quota. Refining an already-valid deterministic plan
+# inside a fixed whitelist is extraction, not reasoning -- lite is the
+# right tier for it.
+MODEL = "gemini-flash-lite-latest"
 
 _client: genai.Client | None = None
 
@@ -42,6 +51,7 @@ async def call_gemini(
     as an expected branch -- not an error -- and falls back to whatever
     deterministic result it already has. Gemini being slow, rate-limited,
     returning malformed JSON, or just down is not exceptional; it's Tuesday."""
+    started = time.perf_counter()
     try:
         client = _get_client()
         response = await asyncio.wait_for(
@@ -60,10 +70,21 @@ async def call_gemini(
             ),
             timeout=timeout_s,
         )
+        print(f"Gemini call succeeded ({response_model.__name__}) in {time.perf_counter() - started:.1f}s")
+        print(f"Gemini call response: {response.text}")
         return response_model.model_validate_json(response.text)
     except Exception as e:  # noqa: BLE001 -- intentionally broad, see docstring
         # str(TimeoutError()) is "" -- fall back to repr so a timeout doesn't
         # log as a silent blank line indistinguishable from "no error at all".
         detail = str(e) or repr(e)
-        log.warning("gemini call failed (%s): %s", response_model.__name__, detail)
+        # Elapsed is the whole point of the line when the failure IS a
+        # timeout: it's what tells you whether the budget is wrong or the
+        # call genuinely hung.
+        log.warning(
+            "gemini call failed (%s) after %.1fs of %.1fs budget: %s",
+            response_model.__name__,
+            time.perf_counter() - started,
+            timeout_s,
+            detail,
+        )
         return None

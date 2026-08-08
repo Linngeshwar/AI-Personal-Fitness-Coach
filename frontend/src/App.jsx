@@ -20,6 +20,7 @@ export default function App() {
   const [plan, setPlan] = useState(null);
   const [checking, setChecking] = useState(true);
   const [view, setView] = useState("today"); // "today" | "adjust" (onboarding shows whenever plan is null)
+  const [justUpdated, setJustUpdated] = useState(false);
 
   useEffect(() => {
     fetchCurrentPlan()
@@ -58,12 +59,18 @@ export default function App() {
         <Adjust
           onDone={(newPlan) => {
             setPlan(newPlan);
+            setJustUpdated(true);
             setView("today");
           }}
           onCancel={() => setView("today")}
         />
       ) : (
-        <Today plan={plan} onAdjust={() => setView("adjust")} />
+        <Today
+          plan={plan}
+          onAdjust={() => setView("adjust")}
+          justUpdated={justUpdated}
+          onDismissUpdate={() => setJustUpdated(false)}
+        />
       )}
     </main>
   );

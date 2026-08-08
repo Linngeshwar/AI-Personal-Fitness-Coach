@@ -4,15 +4,18 @@ from schemas.adjust import ConstraintDelta
 from schemas.plan import Plan
 from schemas.profile import UserProfile
 
-# Spec's original budget was 4s/6s, tuned against gemini-2.5-flash (no
-# longer reachable on new keys -- see gemini/client.py). gemini-flash-latest
-# measured 3.6-11s with thinking left on default; forcing thinking_level=
-# "low" in client.py brought that down to a consistent 2-4s. Timeouts stay
-# wider than that measured range on purpose -- Gemini's own transient 503s
-# ("high demand") are real and expected, and a slow-but-legitimate response
-# is strictly better than an unnecessary fallback.
-CALL_A_TIMEOUT_S = 8.0
-CALL_B_TIMEOUT_S = 12.0
+# Measured against gemini-flash-lite-latest (see gemini/client.py) with a
+# real 7-day/16-block plan and a 40-id whitelist: Call A 1.0-2.4s (37
+# output tokens), Call B 3.6-5.6s (~1.3k output tokens -- it re-emits the
+# whole plan, so its floor is bounded by plan size, not prompt complexity).
+#
+# Budgets sit well above those ranges on purpose. The previous 12s Call B
+# budget sat *inside* its own latency spread, so a normal-but-slow response
+# tripped the timeout and silently dropped the user back to the unrefined
+# deterministic plan. Gemini's transient 503s ("high demand") are real, and
+# a slow-but-legitimate response beats an unnecessary fallback every time.
+CALL_A_TIMEOUT_S = 10.0
+CALL_B_TIMEOUT_S = 20.0
 
 
 async def interpret_constraints(text: str, profile: UserProfile) -> ConstraintDelta | None:
