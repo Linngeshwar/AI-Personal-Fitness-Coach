@@ -1,0 +1,447 @@
+<title>AI Fitness Coach — System Diagrams</title>
+<style>
+  :root{
+    --bg:#f6f7f4;
+    --surface:#ffffff;
+    --surface-2:#eef0ea;
+    --ink:#1c231f;
+    --ink-dim:#5a6459;
+    --line:#c6ccc0;
+    --line-strong:#8b9484;
+    --teal:#0e7d6b;
+    --teal-soft:#d7ece7;
+    --amber:#a8701c;
+    --amber-soft:#f2e3cb;
+    --red:#a3402f;
+    --red-soft:#f3ded9;
+    --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --sans: -apple-system, "Segoe UI", "Inter", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12160f;
+      --surface:#191f16;
+      --surface-2:#1f261b;
+      --ink:#e7ecdf;
+      --ink-dim:#a2ac97;
+      --line:#3a4333;
+      --line-strong:#5c6852;
+      --teal:#5fc9ae;
+      --teal-soft:#1c2f28;
+      --amber:#e0ab5f;
+      --amber-soft:#332a17;
+      --red:#e08a76;
+      --red-soft:#332019;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12160f;
+    --surface:#191f16;
+    --surface-2:#1f261b;
+    --ink:#e7ecdf;
+    --ink-dim:#a2ac97;
+    --line:#3a4333;
+    --line-strong:#5c6852;
+    --teal:#5fc9ae;
+    --teal-soft:#1c2f28;
+    --amber:#e0ab5f;
+    --amber-soft:#332a17;
+    --red:#e08a76;
+    --red-soft:#332019;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    margin:0;
+    padding:0 0 6rem;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:3.5rem 1.75rem 0;
+  }
+  header.page{
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+    margin-bottom:3rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1.75rem;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+  }
+  h1{
+    font-family:var(--mono);
+    font-size:clamp(1.5rem, 2.4vw, 2rem);
+    font-weight:600;
+    margin:0;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  .dek{
+    color:var(--ink-dim);
+    font-size:0.98rem;
+    max-width:62ch;
+    margin:0;
+  }
+  section.figure-block{
+    margin-bottom:3.5rem;
+  }
+  .figure-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:1rem;
+    flex-wrap:wrap;
+  }
+  .figure-head h2{
+    font-family:var(--mono);
+    font-size:1.05rem;
+    font-weight:600;
+    margin:0;
+  }
+  .figure-head .tag{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    letter-spacing:0.04em;
+  }
+  figure{
+    margin:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.25rem 1.25rem 1rem;
+  }
+  .svg-scroll{
+    overflow-x:auto;
+  }
+  svg{
+    display:block;
+    max-width:100%;
+    height:auto;
+    font-family:var(--sans);
+  }
+  figcaption{
+    color:var(--ink-dim);
+    font-size:0.88rem;
+    margin-top:0.9rem;
+    padding-top:0.8rem;
+    border-top:1px solid var(--line);
+    max-width:78ch;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.1rem;
+    margin-top:0.9rem;
+    font-family:var(--mono);
+    font-size:0.74rem;
+    color:var(--ink-dim);
+  }
+  .legend span{
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+  }
+  .swatch{
+    width:0.65rem;
+    height:0.65rem;
+    border-radius:2px;
+    display:inline-block;
+  }
+  footer.note{
+    max-width:70ch;
+    color:var(--ink-dim);
+    font-size:0.85rem;
+    margin-top:2.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--line);
+  }
+  footer.note code{
+    font-family:var(--mono);
+    background:var(--surface-2);
+    padding:0.1rem 0.35rem;
+    border-radius:4px;
+    font-size:0.82em;
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <span class="eyebrow">fitness-coach-architecture-react-fastapi.md</span>
+    <h1>Plan lifecycle &amp; system architecture</h1>
+    <p class="dek">Two diagrams read off the spec: the mechanism a plan actually travels through on every request, and the components that mechanism runs on. Teal marks the path that always ships; amber marks the path that's allowed to fail.</p>
+  </header>
+
+  <section class="figure-block">
+    <div class="figure-head">
+      <h2>1. Plan generation &amp; adaptation flow</h2>
+      <span class="tag">Layers 0 → 5</span>
+    </div>
+    <figure>
+      <div class="svg-scroll">
+        <svg viewBox="0 0 1000 900" role="img" aria-label="Flow diagram: a user profile passes through a safety screening gate, then the deterministic planner core, then an optional Gemini refinement call, then the validator. If the validator finds hard violations it attempts a targeted repair and re-validates; if that still fails it discards Gemini's plan and ships the original deterministic plan unchanged. Once a plan ships, session logs feed an adherence engine whose triggers adjust plan state and loop back to regenerate the next seven days via the planner core.">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+            </marker>
+            <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/>
+            </marker>
+            <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--amber)"/>
+            </marker>
+          </defs>
+
+          <!-- 1. Onboarding -->
+          <rect x="380" y="20" width="240" height="52" rx="6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="500" y="41" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Onboarding</text>
+          <text x="500" y="58" text-anchor="middle" font-size="11" fill="var(--ink-dim)">6-step form → UserProfile</text>
+
+          <line x1="500" y1="72" x2="500" y2="100" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+          <!-- 2. Screening gate diamond -->
+          <polygon points="500,100 600,150 500,200 400,150" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="500" y="146" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">Screening</text>
+          <text x="500" y="161" text-anchor="middle" font-size="11" fill="var(--ink-dim)">gate</text>
+
+          <!-- blocked branch -->
+          <line x1="600" y1="150" x2="760" y2="150" stroke="var(--red)" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <text x="680" y="141" text-anchor="middle" font-size="10.5" fill="var(--red)">flagged</text>
+          <rect x="760" y="120" width="200" height="60" rx="6" fill="var(--red-soft)" stroke="var(--red)" stroke-width="1.2"/>
+          <text x="860" y="144" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">Nutrition disabled /</text>
+          <text x="860" y="159" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">clearance required</text>
+          <text x="860" y="173" text-anchor="middle" font-size="10" fill="var(--ink-dim)">visible card, not a modal</text>
+
+          <!-- clear branch continues down -->
+          <line x1="500" y1="200" x2="500" y2="230" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <text x="516" y="219" font-size="10.5" fill="var(--ink-dim)">clear</text>
+
+          <!-- 3. Planner core -->
+          <rect x="360" y="230" width="280" height="60" rx="6" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="1.6"/>
+          <text x="500" y="255" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Layer 2 — Planner core</text>
+          <text x="500" y="271" text-anchor="middle" font-size="11" fill="var(--ink-dim)">deterministic, pure function → draft Plan</text>
+          <text x="500" y="285" text-anchor="middle" font-size="10" fill="var(--teal)">always produces a valid plan</text>
+
+          <line x1="500" y1="290" x2="500" y2="318" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+          <!-- 4. Gemini refine (dashed / optional) -->
+          <rect x="360" y="318" width="280" height="60" rx="6" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <text x="500" y="341" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Call B — Plan refiner</text>
+          <text x="500" y="357" text-anchor="middle" font-size="11" fill="var(--ink-dim)">Gemini, ≤40 allowed IDs, 6s timeout</text>
+          <text x="500" y="371" text-anchor="middle" font-size="10" fill="var(--amber)">on timeout/error → returns None, draft unchanged</text>
+
+          <line x1="500" y1="378" x2="500" y2="406" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+          <!-- 5. Validator diamond -->
+          <polygon points="500,406 615,461 500,516 385,461" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="500" y="453" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">Layer 4 — Validator</text>
+          <text x="500" y="469" text-anchor="middle" font-size="11" fill="var(--ink-dim)">hard violations?</text>
+
+          <!-- no violations -> ship -->
+          <line x1="500" y1="516" x2="500" y2="546" stroke="var(--teal)" stroke-width="1.6" marker-end="url(#arrowTeal)"/>
+          <text x="522" y="535" font-size="10.5" fill="var(--teal)">none</text>
+
+          <!-- violations -> repair -->
+          <line x1="615" y1="461" x2="740" y2="461" stroke="var(--red)" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <text x="678" y="452" text-anchor="middle" font-size="10.5" fill="var(--red)">hard</text>
+          <rect x="740" y="431" width="220" height="60" rx="6" fill="none" stroke="var(--red)" stroke-width="1.3"/>
+          <text x="850" y="455" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Attempt targeted repair</text>
+          <text x="850" y="471" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">swap / trim / rescale, then re-validate</text>
+
+          <!-- repair loop back down to re-check -->
+          <line x1="850" y1="491" x2="850" y2="560" stroke="var(--red)" stroke-width="1.3"/>
+          <line x1="850" y1="560" x2="705" y2="560" stroke="var(--red)" stroke-width="1.3" marker-end="url(#arrow)"/>
+          <text x="850" y="577" text-anchor="middle" font-size="10" fill="var(--ink-dim)">re-validate</text>
+
+          <!-- repaired still fails -> fallback -->
+          <rect x="595" y="605" width="230" height="56" rx="6" fill="var(--red-soft)" stroke="var(--red)" stroke-width="1.3"/>
+          <text x="710" y="628" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">still fails → discard,</text>
+          <text x="710" y="643" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">log to /debug/validations</text>
+          <line x1="850" y1="560" x2="850" y2="605" stroke="var(--red)" stroke-width="1.3" stroke-dasharray="0" marker-end="url(#arrow)" transform="translate(-140,0)"/>
+
+          <!-- Ship plan node -->
+          <rect x="380" y="546" width="240" height="56" rx="6" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="1.8"/>
+          <text x="500" y="570" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Ship plan</text>
+          <text x="500" y="586" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">generated_by: deterministic | gemini_refined</text>
+
+          <!-- fallback plan feeds into ship plan -->
+          <line x1="595" y1="633" x2="500" y2="633" stroke="var(--teal)" stroke-width="1.5"/>
+          <line x1="500" y1="633" x2="500" y2="602" stroke="var(--teal)" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+          <text x="500" y="614" text-anchor="end" font-size="10" fill="var(--teal)" dx="-6">original deterministic plan, unchanged</text>
+
+          <!-- repaired-and-passed also feeds ship plan -->
+          <line x1="740" y1="461" x2="700" y2="461" stroke="var(--teal)" stroke-width="0" opacity="0"/>
+
+          <line x1="500" y1="602" x2="500" y2="700" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <text x="516" y="654" font-size="10.5" fill="var(--ink-dim)">user trains,</text>
+          <text x="516" y="668" font-size="10.5" fill="var(--ink-dim)">logs session</text>
+
+          <!-- Adherence loop -->
+          <rect x="360" y="700" width="280" height="56" rx="6" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.3"/>
+          <text x="500" y="724" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Layer 5 — Adherence engine</text>
+          <text x="500" y="740" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">14-day window → misses, RPE, skip reasons</text>
+
+          <line x1="500" y1="756" x2="500" y2="784" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+          <rect x="360" y="784" width="280" height="56" rx="6" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.3"/>
+          <text x="500" y="808" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Trigger table</text>
+          <text x="500" y="824" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">volume_multiplier, session length, injuries</text>
+
+          <!-- loop back to planner core -->
+          <path d="M 360 812 C 120 812, 120 260, 360 260" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#arrowTeal)"/>
+          <text x="150" y="536" font-size="11" fill="var(--teal)" transform="rotate(-90 150 536)" text-anchor="middle">regenerate next 7 days only</text>
+        </svg>
+      </div>
+      <figcaption>A plan is always the deterministic planner's output first. Gemini's refinement is a dashed, fallible step; the validator is the only gate that decides what a user sees, and every failure path resolves back to the plan that was already known to be legal. Session logs close the loop: the adherence engine's triggers feed straight back into the planner core for the next 7-day window.</figcaption>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--teal)"></span>always ships — deterministic</span>
+        <span><span class="swatch" style="background:var(--amber)"></span>optional — Gemini, can fail silently</span>
+        <span><span class="swatch" style="background:var(--red)"></span>rejection / repair path</span>
+      </div>
+    </figure>
+  </section>
+
+  <section class="figure-block">
+    <div class="figure-head">
+      <h2>2. System architecture</h2>
+      <span class="tag">React (Vite) · FastAPI · asyncpg · Gemini</span>
+    </div>
+    <figure>
+      <div class="svg-scroll">
+        <svg viewBox="0 0 1020 640" role="img" aria-label="Architecture diagram: a Vite/React single-page app calls a FastAPI backend over an /api HTTPS boundary using OpenAPI-generated types. FastAPI's routers call into the planner core, the Gemini client, and a validator, all of which share raw asyncpg queries against a single PostgreSQL pool holding exercises, foods, plans and session logs, gemini cache, and consent records. The Gemini client calls the external Gemini API with a 4 to 6 second timeout and returns None on failure so callers fall back to the deterministic plan. A privacy boundary shows that only an anonymized attribute bundle crosses to Gemini, while health fields are encrypted at rest in Postgres.">
+          <defs>
+            <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+            </marker>
+            <marker id="arrow2Amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--amber)"/>
+            </marker>
+          </defs>
+
+          <!-- Browser -->
+          <rect x="30" y="40" width="220" height="120" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.4"/>
+          <text x="140" y="65" text-anchor="middle" font-size="12" fill="var(--ink-dim)" letter-spacing="0.04em">BROWSER</text>
+          <text x="140" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">React SPA</text>
+          <text x="140" y="110" text-anchor="middle" font-size="11" fill="var(--ink-dim)">Vite · Today, Logger,</text>
+          <text x="140" y="124" text-anchor="middle" font-size="11" fill="var(--ink-dim)">Adjust, Week, Nutrition</text>
+          <text x="140" y="144" text-anchor="middle" font-size="10" fill="var(--ink-dim)">types from /openapi.json</text>
+
+          <!-- arrow to FastAPI boundary -->
+          <line x1="250" y1="100" x2="330" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow2)"/>
+          <text x="290" y="90" text-anchor="middle" font-size="10" fill="var(--ink-dim)">/api · JSON</text>
+          <line x1="330" y1="118" x2="250" y2="118" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+          <!-- FastAPI boundary box -->
+          <rect x="330" y="20" width="450" height="330" rx="10" fill="none" stroke="var(--line-strong)" stroke-width="1.4" stroke-dasharray="2 4"/>
+          <text x="350" y="42" font-size="11" fill="var(--ink-dim)" letter-spacing="0.04em">FASTAPI BACKEND (single process)</text>
+
+          <!-- Routers -->
+          <rect x="352" y="56" width="180" height="52" rx="6" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.3"/>
+          <text x="442" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">Routers</text>
+          <text x="442" y="94" text-anchor="middle" font-size="10" fill="var(--ink-dim)">onboarding, plan, sessions</text>
+
+          <!-- Planner core -->
+          <rect x="352" y="130" width="180" height="52" rx="6" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="1.4"/>
+          <text x="442" y="152" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Planner core</text>
+          <text x="442" y="168" text-anchor="middle" font-size="10" fill="var(--ink-dim)">pure fn, no I/O</text>
+
+          <!-- Validator -->
+          <rect x="352" y="204" width="180" height="52" rx="6" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.3"/>
+          <text x="442" y="226" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">Validator</text>
+          <text x="442" y="242" text-anchor="middle" font-size="10" fill="var(--ink-dim)">repair ladder + fallback</text>
+
+          <!-- Adherence engine -->
+          <rect x="352" y="278" width="180" height="52" rx="6" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.3"/>
+          <text x="442" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">Adherence engine</text>
+          <text x="442" y="316" text-anchor="middle" font-size="10" fill="var(--ink-dim)">triggers, regen next 7d</text>
+
+          <!-- Gemini client -->
+          <rect x="562" y="130" width="196" height="106" rx="6" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.4"/>
+          <text x="660" y="153" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Gemini client</text>
+          <text x="660" y="170" text-anchor="middle" font-size="10" fill="var(--ink-dim)">Calls A · B · C · D</text>
+          <text x="660" y="185" text-anchor="middle" font-size="10" fill="var(--ink-dim)">4–6s timeout</text>
+          <text x="660" y="200" text-anchor="middle" font-size="10" fill="var(--amber)">returns None on failure</text>
+          <text x="660" y="217" text-anchor="middle" font-size="10" fill="var(--ink-dim)">— never raises —</text>
+
+          <!-- internal arrows -->
+          <line x1="442" y1="108" x2="442" y2="130" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow2)"/>
+          <line x1="442" y1="182" x2="442" y2="204" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow2)"/>
+          <line x1="442" y1="256" x2="442" y2="278" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#arrow2)"/>
+          <text x="452" y="270" font-size="9.5" fill="var(--ink-dim)">on log write</text>
+
+          <line x1="532" y1="150" x2="562" y2="165" stroke="var(--amber)" stroke-width="1.3" marker-end="url(#arrow2Amber)"/>
+          <text x="537" y="145" font-size="9.5" fill="var(--amber)">Call B refine</text>
+          <line x1="532" y1="220" x2="562" y2="200" stroke="var(--amber)" stroke-width="1.1" stroke-dasharray="4 3"/>
+          <text x="590" y="242" font-size="9.5" fill="var(--ink-dim)">allowed-ID whitelist only</text>
+
+          <!-- gemini out to external -->
+          <line x1="758" y1="183" x2="900" y2="183" stroke="var(--amber)" stroke-width="1.4" marker-end="url(#arrow2Amber)"/>
+          <text x="828" y="173" text-anchor="middle" font-size="9.5" fill="var(--amber)">anon. bundle</text>
+
+          <!-- external gemini box -->
+          <rect x="880" y="150" width="120" height="66" rx="8" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.4"/>
+          <text x="940" y="176" text-anchor="middle" font-size="11" fill="var(--ink-dim)">EXTERNAL</text>
+          <text x="940" y="196" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">Gemini API</text>
+          <text x="940" y="209" text-anchor="middle" font-size="9.5" fill="var(--ink-dim)">2.5-flash</text>
+
+          <!-- Postgres -->
+          <rect x="352" y="352" width="406" height="150" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-width="1.4"/>
+          <text x="372" y="374" font-size="11" fill="var(--ink-dim)" letter-spacing="0.04em">POSTGRESQL — asyncpg pool, raw SQL</text>
+
+          <rect x="372" y="386" width="110" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <text x="427" y="411" text-anchor="middle" font-size="10.5" fill="currentColor">exercises</text>
+
+          <rect x="494" y="386" width="90" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <text x="539" y="411" text-anchor="middle" font-size="10.5" fill="currentColor">foods</text>
+
+          <rect x="596" y="386" width="150" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <text x="671" y="411" text-anchor="middle" font-size="10.5" fill="currentColor">session_logs</text>
+
+          <rect x="372" y="440" width="150" height="42" rx="5" fill="none" stroke="var(--red)" stroke-width="1.1"/>
+          <text x="447" y="465" text-anchor="middle" font-size="10.5" fill="currentColor">health fields</text>
+          <text x="447" y="452" text-anchor="middle" font-size="8.5" fill="var(--red)">AES-GCM encrypted</text>
+
+          <rect x="534" y="440" width="100" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <text x="584" y="465" text-anchor="middle" font-size="10.5" fill="currentColor">gemini_cache</text>
+
+          <rect x="646" y="440" width="100" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <text x="696" y="465" text-anchor="middle" font-size="10.5" fill="currentColor">consents</text>
+
+          <!-- routers/planner/validator down to postgres -->
+          <line x1="442" y1="330" x2="442" y2="352" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow2)"/>
+          <line x1="532" y1="80" x2="750" y2="80" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity="0"/>
+
+          <!-- routers to postgres direct (curve) -->
+          <path d="M 352 82 C 300 82, 300 400, 352 400" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#arrow2)"/>
+          <text x="292" y="240" font-size="9.5" fill="var(--ink-dim)" transform="rotate(-90 292 240)" text-anchor="middle">reads / writes</text>
+
+          <!-- privacy annotation -->
+          <text x="880" y="240" font-size="9.5" fill="var(--ink-dim)" text-anchor="end" width="120">age_band, goal, equipment —</text>
+          <text x="880" y="252" font-size="9.5" fill="var(--ink-dim)" text-anchor="end">no name, no dob, no email</text>
+        </svg>
+      </div>
+      <figcaption>One FastAPI process owns three internal collaborators — planner core, validator, Gemini client — and one PostgreSQL pool via raw asyncpg (no ORM). Only the Gemini client crosses the process boundary to an external service, and only with an anonymized attribute bundle; health fields stay encrypted inside Postgres. The dashed outer box marks the process boundary itself, not a network hop.</figcaption>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--teal)"></span>deterministic core</span>
+        <span><span class="swatch" style="background:var(--amber)"></span>Gemini boundary — optional, timed out</span>
+        <span><span class="swatch" style="background:var(--red);border-radius:2px;"></span>encrypted at rest</span>
+      </div>
+    </figure>
+  </section>
+
+  <footer class="note">
+    Source: <code>fitness-coach-architecture-react-fastapi.md</code>. Diagram 1 traces a single plan request end-to-end, including both failure branches described in Layer 4. Diagram 2 traces the process/network boundaries described across Layers 1, 3, and 6 — the FastAPI box is one OS process, not a distributed system.
+  </footer>
+</div>
